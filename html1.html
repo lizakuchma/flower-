@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт з букетом</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        #cover {
+            width: 300px;
+            height: 300px;
+            cursor: pointer;
+            transition: opacity 0.5s ease;
+        }
+        #cover:hover {
+            opacity: 0.8;
+        }
+        #bouquet {
+            width: 200px;
+            height: 200px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 1s ease, transform 1s ease;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+        #bouquet.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        #message {
+            opacity: 0;
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+            transition: opacity 1s ease;
+            position: absolute;
+            bottom: 50px;
+        }
+        #message.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <img id="cover" src="photo_2025-11-19_23-22-14.jpg" alt="Cover Image">
+    <img id="bouquet" src="photo_2025-11-19_23-22-08.jpg" alt="Bouquet of Flowers">
+    <div id="message">Посміхайся частіше, тобі дуже личить</div>
+
+    <script>
+        const cover = document.getElementById('cover');
+        const bouquet = document.getElementById('bouquet');
+        const message = document.getElementById('message');
+
+        cover.addEventListener('click', () => {
+    
+            cover.style.opacity = '0';
+            // Показуємо букет з анімацією
+            bouquet.classList.add('show');
+            // Через 1 секунду після появи букета показуємо повідомлення
+            setTimeout(() => {
+                message.classList.add('show');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
