@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сайт з букетом</title>
+    <title></title>
     <style>
         body {
             display: flex;
@@ -16,6 +16,20 @@
             font-family: Arial, sans-serif;
             overflow: hidden;
         }
+
+        /* Підказка */
+        #hint {
+            font-size: 28px;
+            color: #444;
+            margin-bottom: 15px;
+            opacity: 1;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        #hint.hide {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
         #cover {
             width: 300px;
             height: 300px;
@@ -25,21 +39,22 @@
         #cover:hover {
             opacity: 0.8;
         }
+
         #bouquet {
             width: 200px;
             height: 200px;
             opacity: 0;
-            transform: scale(0.5);
+            transform: translate(-50%, -50%) scale(0.5);
             transition: opacity 1s ease, transform 1s ease;
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(0.5);
         }
         #bouquet.show {
             opacity: 1;
             transform: translate(-50%, -50%) scale(1);
         }
+
         #message {
             opacity: 0;
             font-size: 24px;
@@ -55,6 +70,9 @@
     </style>
 </head>
 <body>
+
+    <div id="hint">Натисни 👇</div>
+
     <img id="cover" src="for everething/photo_2025-11-19_23-22-14.jpg" alt="Cover Image">
     <img id="bouquet" src="for everething/photo_2025-11-19_23-22-08.jpg" alt="Bouquet of Flowers">
     <div id="message">Посміхайся частіше, тобі дуже личить</div>
@@ -63,17 +81,25 @@
         const cover = document.getElementById('cover');
         const bouquet = document.getElementById('bouquet');
         const message = document.getElementById('message');
+        const hint = document.getElementById('hint');
 
         cover.addEventListener('click', () => {
-    
+
+            // Ховаємо напис "натисни"
+            hint.classList.add('hide');
+
+            // Ховаємо конверт
             cover.style.opacity = '0';
-            // Показуємо букет з анімацією
+
+            // Показуємо букет
             bouquet.classList.add('show');
-            // Через 1 секунду після появи букета показуємо повідомлення
+
+            // Через 1 секунду показуємо повідомлення
             setTimeout(() => {
                 message.classList.add('show');
             }, 1000);
         });
     </script>
+
 </body>
 </html>
